@@ -1,152 +1,175 @@
-# Django Sports Analytics Platform
+# Sports Forecast Live
 
-A full-stack sports forecasting application built with Django, Python, and React that provides real-time sports statistics, predictive analytics, and interactive visualizations.
+A full-stack sports forecasting application that delivers real-time statistics, predictive analytics, and live match data visualization. This project combines Django for the backend API, React with Tailwind CSS for the frontend, and AWS for deployment.
 
-## 🏆 Features
+![Sports Forecast Live](https://via.placeholder.com/800x400?text=Sports+Forecast+Live)
 
-- **Live Data Streaming**: Real-time sports statistics and match data
-- **Predictive Analytics**: Forecasting match outcomes using exponential smoothing
-- **Interactive Dashboard**: Dynamic UI built with React and Tailwind CSS
-- **RESTful API**: Django-powered backend API for data access
-- **AWS Deployment**: Complete setup for production environment
-- **Database Integration**: PostgreSQL on AWS RDS for persistent storage
+## Features
 
-## 🛠️ Tech Stack
+- **Real-Time Data Streaming**: Live sports data with automatic updates
+- **Predictive Analytics**: Forecasting match statistics using Exponential Smoothing
+- **Interactive Dashboard**: Visualize match predictions and statistics
+- **REST API**: Django-powered API endpoints for data access
+- **Responsive Design**: Tailwind CSS for a mobile-friendly experience
+- **AWS Deployment**: Production-ready setup with PostgreSQL on RDS
+
+## Tech Stack
 
 ### Backend
+- Python 3.x
 - Django
 - Django REST Framework
-- Python for data processing and analytics
-- PostgreSQL database
-- Gunicorn for production server
+- PostgreSQL
+- Gunicorn
 
 ### Frontend
 - React
 - Next.js
 - Tailwind CSS
-- Axios for API requests
+- Axios
 
-### Deployment & Infrastructure
+### DevOps & Deployment
 - AWS EC2
 - AWS RDS
-- Nginx as reverse proxy
-- Apache web server
+- Nginx
+- Apache (optional)
 - Ubuntu Server
+- Screen for process management
+- Cron jobs for automation
 
-## 📊 Project Architecture
-
-```
-django-sports-analytics-platform/
-├── backend/                      # Django API and data processing
-│   ├── api/                      # REST API endpoints
-│   ├── core/                     # Core Django app
-│   ├── data_engine/              # Data processing and forecasting
-│   └── sports_analytics/         # Main Django project settings
-├── frontend/                     # React/Next.js frontend
-│   ├── components/               # Reusable UI components
-│   ├── pages/                    # Next.js pages
-│   ├── public/                   # Static assets
-│   └── styles/                   # Tailwind CSS styles
-├── scripts/                      # Deployment and automation scripts
-└── docs/                         # Documentation
-```
-
-## 🚀 Getting Started
+## Installation
 
 ### Prerequisites
-
-- Python 3.8+
-- Node.js 14+
-- PostgreSQL
+- Python 3.x
+- Node.js and npm
 - Git
 
 ### Local Development Setup
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/django-sports-analytics-platform.git
-   cd django-sports-analytics-platform
+   git clone https://github.com/yourusername/sports-forecast-live.git
+   cd sports-forecast-live
    ```
 
-2. **Backend Setup**
+2. **Set up the backend**
    ```bash
-   cd backend
+   # Create and activate virtual environment
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
+   
+   # Install dependencies
+   cd backend
    pip install -r requirements.txt
+   
+   # Run migrations
    python manage.py migrate
+   
+   # Start the development server
    python manage.py runserver
    ```
 
-3. **Frontend Setup**
+3. **Set up the frontend**
    ```bash
-   cd frontend
+   cd ../frontend
    npm install
    npm run dev
    ```
 
-4. **Running Data Engine**
+4. **Start the data engine**
    ```bash
-   cd backend
-   python data_engine/run.py
+   cd ../backend
+   python data_engine.py
    ```
 
-## 📝 Project Structure
+## Project Structure
 
-### Data Flow
-
-1. Raw sports data is fetched from external sources
-2. Data is processed and analyzed using Python
-3. Forecasting models generate predictions
-4. Django API serves processed data and predictions
-5. React frontend consumes API data and renders UI
-6. Real-time updates refresh the UI automatically
-
-### API Endpoints
-
-- `/api/matches/` - Get all matches data
-- `/api/matches/<id>/` - Get specific match data
-- `/api/predictions/` - Get all predictions
-- `/api/stats/live/` - Get real-time match statistics
-
-## 🌐 Deployment
-
-Follow the detailed deployment guide in the documentation to set up:
-
-1. AWS EC2 instance with Ubuntu
-2. PostgreSQL on AWS RDS
-3. Nginx and Apache configuration
-4. Environment variables and security settings
-5. Process management with Screen
-6. Automated tasks with Cron jobs
-
-## 🔄 Continuous Integration
-
-This project uses GitHub Actions for CI/CD. The workflow includes:
-
-- Automated testing
-- Linting and code quality checks
-- Build and deployment to AWS
-
-## 📚 Documentation
-
-For in-depth documentation, refer to the `/docs` folder or visit the project wiki.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👨‍💻 Author
-
-Developed by [Your Name]
-
-## 🙏 Acknowledgements
-
-- [Cagdas Yetkin](https://github.com/cagdasyetkin) for the original tutorial
-- Sports data providers
-- Open source community
 ```
+sports-forecast-live/
+├── backend/
+│   ├── api/                  # Django API views and serializers
+│   ├── core/                 # Core Django settings
+│   ├── data_engine/          # Real-time data processing
+│   ├── forecasting/          # Prediction algorithms
+│   ├── models/               # Database models
+│   └── manage.py
+├── frontend/
+│   ├── components/           # React components
+│   ├── pages/                # Next.js pages
+│   ├── public/               # Static assets
+│   ├── styles/               # Tailwind configuration
+│   └── package.json
+├── data/                     # Sample data and fixtures
+├── docs/                     # Documentation
+└── deployment/               # Deployment scripts and configs
+    ├── aws/
+    ├── nginx/
+    └── apache/
+```
+
+## API Documentation
+
+The API provides the following endpoints:
+
+### Match Data
+- `GET /api/matches/` - List all matches
+- `GET /api/matches/{id}/` - Get specific match details
+- `GET /api/matches/live/` - Get currently live matches
+
+### Predictions
+- `GET /api/predictions/{match_id}/` - Get predictions for a specific match
+- `GET /api/predictions/upcoming/` - Get predictions for upcoming matches
+
+### Stats
+- `GET /api/stats/{match_id}/` - Get statistics for a specific match
+- `GET /api/stats/trending/` - Get trending statistics
+
+## Deployment
+
+This application is designed to be deployed on AWS. Follow the detailed deployment guide:
+
+1. Launch an EC2 instance with Ubuntu
+2. Set up PostgreSQL on RDS
+3. Configure Nginx as a reverse proxy
+4. Set up Gunicorn for the Django application
+5. Deploy the Next.js frontend
+6. Configure process management with Screen
+7. Set up cron jobs for automated tasks
+
+Detailed deployment instructions are available in the `deployment/` directory.
+
+## Environment Variables
+
+Create a `.env` file in the backend directory with the following variables:
+
+```
+DEBUG=False
+SECRET_KEY=your_secret_key
+DATABASE_URL=postgresql://user:password@host:port/dbname
+ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
+CORS_ALLOWED_ORIGINS=https://yourdomain.com
+```
+
+For the frontend, create a `.env.local` file:
+
+```
+NEXT_PUBLIC_API_URL=https://api.yourdomain.com
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the GPL 3.0 License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- Tutorial by Cagdas Yetkin
+- Sports data provided by [Data Provider]
+- Icons by [Icon Provider]
